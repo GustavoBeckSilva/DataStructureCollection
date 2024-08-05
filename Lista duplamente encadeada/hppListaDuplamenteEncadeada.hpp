@@ -6,8 +6,8 @@ struct No
 {
     int dado;
     No *prox;
-
     No *ant;
+
     No() // construtor
     {
         prox = nullptr;
@@ -20,9 +20,9 @@ struct Lista
     No *inicio;
     No *fim;
     int tamanho;
-    Lista() /// construtor
+
+    Lista() // construtor
     {
-        //cout << "\n executando o construtor...\n";
         inicio = nullptr;
         fim = nullptr;
         tamanho =0;

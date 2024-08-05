@@ -5,6 +5,7 @@ struct No
 {
     int dado;
     struct No *prox;
+
     No() // construtor
     {
         prox = nullptr;
@@ -25,13 +26,13 @@ struct Lista
     }
 };
 
-
-void mostraL(Lista *lista)
+void mostraL(Lista *lista) ///
 {
     No *n = lista->inicio;
 
     cout << "L:{";
-    while(n != NULL ) /// enquanto n não for NULL fica no laço
+
+    while(n != NULL ) // enquanto n não for NULL fica no laço
     {
         cout << n->dado;
         n = n->prox;
@@ -39,26 +40,27 @@ void mostraL(Lista *lista)
         if(n != NULL)
             cout << ", ";
     }
+
     cout << "}\n";
 }
 
-
-void destroiL(Lista *lista)
+void destroiL(Lista *lista) ///
 {
     No *n = lista->inicio;
+
     while(n != nullptr)
     {
         No *aux = n;
         n = n->prox;
         delete aux;
     }
+
     lista->inicio = NULL;
     lista->fim = NULL;
     lista->tamanho = 0;
 }
 
-
-bool vaziaL(Lista *lista)
+bool vaziaL(Lista *lista) ///
 {
     if(lista->inicio == NULL )
         return true;
@@ -178,15 +180,45 @@ bool insereAntesElementoL(Lista *lista, int valor, int elementoPosterior){ ///
 
 }
 
-bool achaMaior(){}
+int achaMaior(Lista *lista){
 
-bool achaMenor(){}
+    No *posicao = lista->inicio;
+    int maior = 0;
 
-bool inserirCrescente(){}
+    while(posicao){
 
-bool inserirDecrescente(){}
+        if(posicao->dado > maior)
+            maior = posicao->dado;
 
+        posicao = posicao->prox;
 
+    }
+
+    return maior;
+
+}
+
+int achaMenor(Lista *lista){
+
+    No *posicao = lista->inicio;
+    int menor = lista->inicio->dado;
+
+    while(posicao){
+
+        if(posicao->dado < menor)
+            menor = posicao->dado;
+
+        posicao = posicao->prox;
+
+    }
+
+    return menor;
+
+}
+
+bool inserirCrescente(Lista *lista, int valor){}
+
+bool inserirDecrescente(Lista *lista, int valor){}
 
 bool removeElementoL(Lista *lista, int valor) ///
 {
@@ -223,16 +255,43 @@ bool removeElementoL(Lista *lista, int valor) ///
 
 }
 
-int removeInicioL(No **lista){}
+int removeInicioL(Lista *lista){ ///
 
-int removeFinalL(No **lista){}
+    int dadoRemovido = 0;
+
+    if(lista){
+
+        dadoRemovido = lista->inicio->dado;
+
+        No *deletado = lista->inicio;
+
+        lista->inicio = deletado->prox;
+
+        if(!lista->inicio)
+            lista->fim == NULL;
+
+        lista->tamanho--;
+
+
+        delete (deletado);
+
+    }
+
+    return dadoRemovido;
+
+}
+
+int removeFinalL(No *lista){
 
 
 
-No* buscaL(Lista *lista, int valor)
+}
+
+No* buscaL(Lista *lista, int valor) ///
 {
     No *n = lista->inicio;
-    while (n)
+
+    while(n)
     {
         if (n->dado == valor)
             return n;

@@ -13,12 +13,15 @@ int main(void)
     Lista lista = Lista();//chama o cosntrutor para inicilizar a lista
 
     insereInicioL(&lista, 30);
-    insereInicioL(&lista, 10);
-    insereFimL(&lista, 25);
+    //insereInicioL(&lista, 10);
+    //insereFimL(&lista, 25);
 
-       insereAntesElementoL(&lista, 20, 30);
+     //  insereAntesElementoL(&lista, 20, 30);
     //insereFimL(&lista, 45);
     mostraL(&lista);
+    removeInicioL(&lista);
+    mostraL(&lista);
+
 
 /*
     cout << "\n\n###TESTE 1 - inserindo inicio/fim\n";
