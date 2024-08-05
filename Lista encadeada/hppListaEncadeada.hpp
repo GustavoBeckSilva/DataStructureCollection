@@ -97,22 +97,26 @@ bool insereFimL(No **lista, int valor) ///
 
 }
 
-void inserirCrescente(No **lista, int valor){ ///
+void inserirCrescente(No **lista, int valor)  ///
+{
 
-   No *novo = new No(); // cria novo nó
-   novo->dado = valor;  // com o valor informado
+    No *novo = new No(); // cria novo nó
+    novo->dado = valor;  // com o valor informado
 
-    if(*lista == NULL){ // se a lista está vazia
+    if(*lista == NULL)  // se a lista está vazia
+    {
         *lista = novo;       // insere o novo elemento no início dela
         novo->prox = NULL;  // consequentemente, será o último
     }
 
-    else{
+    else
+    {
 
         No *posicao = *lista, *posicaoAnterior = *lista; // cria ponteiro para percorrer lista e para guardar ultima posicao
         int maior = 0, menor = (*lista)->dado;  // cria maior e menor
 
-        while(posicao != NULL){ // enquanto a lista nao acabar
+        while(posicao != NULL)  // enquanto a lista nao acabar
+        {
 
             if(posicao->dado > maior) // verefica se o elemento é o maior
                 maior = posicao->dado;
@@ -125,23 +129,28 @@ void inserirCrescente(No **lista, int valor){ ///
 
         }
 
-        if(valor >= maior){ // verefica se é o último
+        if(valor >= maior)  // verefica se é o último
+        {
             novo->prox = NULL;  // próximo elemento é nulo
             posicaoAnterior->prox = novo; // o antigo último elemento recebe o novo nó
         }
 
-        else if(valor <= menor){ // verefica se é o primeiro
+        else if(valor <= menor)  // verefica se é o primeiro
+        {
             novo->prox = *lista; // o início da lista será seu próximo
             *lista = novo;       // insere o novo elemento no início dela
         }
 
-        else{ // verefica se está no meio
+        else  // verefica se está no meio
+        {
 
             posicao = *lista; // seta o ponteiro para o início da lista
 
-            while(posicao != NULL){ // percorre a lista
+            while(posicao != NULL)  // percorre a lista
+            {
 
-                if(posicao->prox->dado > valor){ // se o próximo valor for maior que o informado
+                if(posicao->prox->dado > valor)  // se o próximo valor for maior que o informado
+                {
                     novo->prox = posicao->prox; // o próximo do novo será o próximo do atual
                     posicao->prox = novo; // o proximo do atual será o novo
                     break;
@@ -155,22 +164,26 @@ void inserirCrescente(No **lista, int valor){ ///
 
 }
 
-void inserirDecrescente(No **lista, int valor){ ///
+void inserirDecrescente(No **lista, int valor)  ///
+{
 
-   No *novo = new No(); // cria novo nó
-   novo->dado = valor;  // com o valor informado
+    No *novo = new No(); // cria novo nó
+    novo->dado = valor;  // com o valor informado
 
-    if(*lista == NULL){ // se a lista está vazia
+    if(*lista == NULL)  // se a lista está vazia
+    {
         *lista = novo;       // insere o novo elemento no início dela
         novo->prox = NULL;  // consequentemente, será o último
     }
 
-    else{
+    else
+    {
 
         No *posicao = *lista, *posicaoAnterior = *lista; // cria ponteiro para percorrer lista e para guardar ultima posicao
         int maior = 0, menor = (*lista)->dado;  // cria maior e menor
 
-        while(posicao != NULL){ // enquanto a lista nao acabar
+        while(posicao != NULL)  // enquanto a lista nao acabar
+        {
 
             if(posicao->dado > maior) // verefica se o elemento é o maior
                 maior = posicao->dado;
@@ -183,23 +196,28 @@ void inserirDecrescente(No **lista, int valor){ ///
 
         }
 
-        if(valor >= maior){ // verefica se é o último
+        if(valor >= maior)  // verefica se é o último
+        {
             novo->prox = *lista; // o início da lista será seu próximo
             *lista = novo;       // insere o novo elemento no início dela
         }
 
-        else if(valor <= menor){ // verefica se é o primeiro
+        else if(valor <= menor)  // verefica se é o primeiro
+        {
             novo->prox = NULL;  // próximo elemento é nulo
             posicaoAnterior->prox = novo; // o antigo último elemento recebe o novo nó
         }
 
-        else{ // verefica se está no meio
+        else  // verefica se está no meio
+        {
 
             posicao = *lista; // seta o ponteiro para o início da lista
 
-            while(posicao != NULL){ // percorre a lista
+            while(posicao != NULL)  // percorre a lista
+            {
 
-                if(posicao->prox->dado < valor){ // se o próximo valor for maior que o informado
+                if(posicao->prox->dado < valor)  // se o próximo valor for maior que o informado
+                {
                     novo->prox = posicao->prox; // o próximo do novo será o próximo do atual
                     posicao->prox = novo; // o proximo do atual será o novo
                     break;
@@ -213,41 +231,45 @@ void inserirDecrescente(No **lista, int valor){ ///
 
 }
 
-int achaMaior(No **lista){
+int achaMaior(No **lista)
+{
 
     No *posicao = *lista; // cria ponteiro para percorrer lista
 
     int maior = 0;// cria maior
 
-        while(posicao != NULL){ // enquanto a lista nao acabar
+    while(posicao != NULL)  // enquanto a lista nao acabar
+    {
 
-            if(posicao->dado > maior) // verefica se o elemento é o maior
-                maior = posicao->dado;
+        if(posicao->dado > maior) // verefica se o elemento é o maior
+            maior = posicao->dado;
 
-            posicao = posicao->prox; // avança o vetor
+        posicao = posicao->prox; // avança o vetor
 
-        }
+    }
 
     return maior;
 
 }
 
-int achaMenor(No **lista){
+int achaMenor(No **lista)
+{
 
     No *posicao = *lista; // cria ponteiro para percorrer lista
 
-        int menor = (*lista)->dado;  // cria menor
+    int menor = (*lista)->dado;  // cria menor
 
-        while(posicao != NULL){ // enquanto a lista nao acabar
+    while(posicao != NULL)  // enquanto a lista nao acabar
+    {
 
-            if(posicao->dado < menor) // verefica se o elemento é o menor
-                menor = posicao->dado;
+        if(posicao->dado < menor) // verefica se o elemento é o menor
+            menor = posicao->dado;
 
-            posicao = posicao->prox; // avança o vetor
+        posicao = posicao->prox; // avança o vetor
 
-        }
+    }
 
-        return menor;
+    return menor;
 
 }
 
@@ -363,7 +385,8 @@ int leFinalL(No **lista) ///
 
     No *aux = *lista;
 
-    if(vaziaL(lista) == false){
+    if(vaziaL(lista) == false)
+    {
 
         while(aux->prox != NULL) // vai até o elemento final da lista
             aux = aux->prox;
@@ -393,7 +416,8 @@ int removeInicioL(No **lista)
     return dado;
 }
 
-int removeFinalL(No **lista){ ///
+int removeFinalL(No **lista)  ///
+{
 
     if(vaziaL(lista)) // caso lista estiver vazia, não remove nada
         return 0;
@@ -401,16 +425,19 @@ int removeFinalL(No **lista){ ///
     No *posicao = *lista; // ponteiro na posição inicial da lista
     int retorno; // variavel de retorno
 
-    if(posicao->prox == NULL){ // caso a lista ter um unico elemento
+    if(posicao->prox == NULL)  // caso a lista ter um unico elemento
+    {
         retorno = posicao->dado; // armazena-o no retorno
         *lista = NULL; // e limpa a lista
     }
 
-    else{ // caso ter mais de um elemento
+    else  // caso ter mais de um elemento
+    {
 
         No *posicaoAnterior = *lista; // reserva um ponteiro para a posição anterior
 
-        while(posicao->prox != NULL){ // enquanto não chegar no fim
+        while(posicao->prox != NULL)  // enquanto não chegar no fim
+        {
             posicaoAnterior = posicao; // guarda a posição anterior
             posicao = posicao->prox; // avança o ponteiro
         }
