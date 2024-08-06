@@ -180,35 +180,35 @@ bool insereAntesElementoL(Lista *lista, int valor, int elementoPosterior){ ///
 
 }
 
-int achaMaior(Lista *lista){
+int achaMaior(Lista *lista){ ///
 
-    No *posicao = lista->inicio;
-    int maior = 0;
+    No *posicao = lista->inicio; // posição recebe o inicio da lista
+    int maior = 0; // inicializa o maior
 
-    while(posicao){
+    while(posicao){ // enquanto houver posições na lista
 
-        if(posicao->dado > maior)
+        if(posicao->dado > maior) // verefica qual o maior valor
             maior = posicao->dado;
 
-        posicao = posicao->prox;
+        posicao = posicao->prox; // avança na lista
 
     }
 
-    return maior;
+    return maior; // retorna o maior
 
 }
 
-int achaMenor(Lista *lista){
+int achaMenor(Lista *lista){ ///
 
-    No *posicao = lista->inicio;
-    int menor = lista->inicio->dado;
+    No *posicao = lista->inicio; // coloca o ponteiro no inicio da lista
+    int menor = lista->inicio->dado; // inicializa a lista com o primeiro valor
 
-    while(posicao){
+    while(posicao){ // enquanto houver posições
 
-        if(posicao->dado < menor)
+        if(posicao->dado < menor) // verefica se o elemento é o menor
             menor = posicao->dado;
 
-        posicao = posicao->prox;
+        posicao = posicao->prox; // percorre a lista
 
     }
 
@@ -216,9 +216,92 @@ int achaMenor(Lista *lista){
 
 }
 
-bool inserirCrescente(Lista *lista, int valor){}
+bool inserirCrescente(Lista *lista, int valor) { ///
 
-bool inserirDecrescente(Lista *lista, int valor){}
+    No *novo = new No(); // cria novo nó
+
+    if(!novo)
+        return false;
+
+    novo->dado = valor; // atribui valor a ele
+
+    if(vaziaL(lista)) // se estiver vazia
+        insereInicioL(lista, valor); // insere normalmente o elemento
+
+    else {
+        int maior = achaMaior(lista);
+        int menor = achaMenor(lista);
+
+        if(valor <= menor) // se for menor, insere no inicio
+            insereInicioL(lista, valor);
+
+        else if(valor >= maior) // se for maior, insere no final
+            insereFimL(lista, valor);
+
+        else { // caso contrário, inserção é no meio
+
+            No *posicao = lista->inicio;
+
+            while(posicao->prox != NULL && posicao->prox->dado < valor) // verefica se o próximo valor é menor, se for, insere
+                posicao = posicao->prox;
+
+            novo->prox = posicao->prox; // recebe o endereço do próximo
+            posicao->prox = novo; //
+
+            if(novo->prox == NULL)
+                lista->fim = novo;
+
+        }
+    }
+
+    lista->tamanho++;
+
+    return true;
+}
+
+bool inserirDecrescente(Lista *lista, int valor){
+
+    No *novo = new No();
+
+    if(!novo)
+        return false;
+
+    novo->dado = valor;
+
+    if(vaziaL(lista))
+        insereInicioL(lista, valor);
+
+    else {
+        int maior = achaMaior(lista);
+        int menor = achaMenor(lista);
+
+        if(valor <= menor)
+            insereFimL(lista, valor);
+
+        else if(valor >= maior)
+            insereInicioL(lista, valor);
+
+        else {
+
+            No *posicao = lista->inicio;
+
+            while(posicao->prox != NULL && posicao->prox->dado > valor)
+                posicao = posicao->prox;
+
+            novo->prox = posicao->prox;
+            posicao->prox = novo;
+
+            if(novo->prox == NULL)
+                lista->fim = novo;
+
+        }
+    }
+
+    lista->tamanho++;
+
+    return true;
+
+}
 
 bool removeElementoL(Lista *lista, int valor) ///
 {
@@ -281,9 +364,42 @@ int removeInicioL(Lista *lista){ ///
 
 }
 
-int removeFinalL(No *lista){
+int removeFinalL(Lista *lista){ ///
 
+    int dadoRemovido = 0;
 
+    if(lista){
+
+        No *posicao = lista->inicio;
+        No *deletado = lista->fim;
+        dadoRemovido = lista->fim->dado;
+
+        if(posicao->prox == NULL){
+            deletado = NULL;
+            lista->fim = deletado;
+            lista->inicio = deletado;
+        }
+
+        else{
+
+            No *posicaoAnterior = NULL;
+
+            while(posicao->prox != NULL){
+                posicaoAnterior = posicao;
+                posicao = posicao->prox;
+            }
+
+            posicaoAnterior->prox = NULL;
+            lista->fim = posicao;
+
+        }
+
+        lista->tamanho--;
+        delete (deletado);
+
+    }
+
+    return dadoRemovido;
 
 }
 

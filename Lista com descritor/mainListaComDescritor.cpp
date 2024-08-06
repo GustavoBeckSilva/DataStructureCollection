@@ -12,14 +12,10 @@ int main(void)
     No* aux = nullptr;
     Lista lista = Lista();//chama o cosntrutor para inicilizar a lista
 
-    insereInicioL(&lista, 30);
-    //insereInicioL(&lista, 10);
-    //insereFimL(&lista, 25);
-
-     //  insereAntesElementoL(&lista, 20, 30);
-    //insereFimL(&lista, 45);
-    mostraL(&lista);
-    removeInicioL(&lista);
+    inserirDecrescente(&lista, 10);
+    inserirDecrescente(&lista, 20);
+    inserirDecrescente(&lista, 30);
+    inserirDecrescente(&lista, 40);
     mostraL(&lista);
 
 
