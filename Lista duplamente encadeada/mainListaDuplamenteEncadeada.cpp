@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "lista_dupla.hpp"
+#include "hppListaDuplamenteEncadeada.hpp"
 
 int main(void)
 {
@@ -12,7 +12,7 @@ int main(void)
     Lista lista = Lista();
 
     cout << "\n\n###TESTE 1\n";
-    cout << lista << endl; //mostra a lista
+    cout << lista << endl;
     insereInicioL(&lista, 10);
     insereInicioL(&lista, 20);
     insereInicioL(&lista, 30);

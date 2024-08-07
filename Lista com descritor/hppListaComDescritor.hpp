@@ -285,11 +285,11 @@ bool inserirDecrescente(Lista *lista, int valor){
 
             No *posicao = lista->inicio;
 
-            while(posicao->prox != NULL && posicao->prox->dado > valor)
+            while(posicao->prox != NULL && posicao->prox->dado > valor) // desloca o ponteiro até 1 posição antes do maior
                 posicao = posicao->prox;
 
-            novo->prox = posicao->prox;
-            posicao->prox = novo;
+            novo->prox = posicao->prox; // o proximo do novo sera o sucessor do atual
+            posicao->prox = novo; // o proximo do anterior será o novo
 
             if(novo->prox == NULL)
                 lista->fim = novo;
